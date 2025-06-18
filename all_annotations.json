@@ -1,0 +1,35 @@
+{
+  "00936c83-bfe0-4be4-bb3a-bfe6a8c29ae5": {
+    "sequence": "00936c83-bfe0-4be4-bb3a-bfe6a8c29ae5",
+    "points": [
+      {
+        "imgName": "00936c83-bfe0-4be4-bb3a-bfe6a8c29ae5_0006473.jpg",
+        "x": 1266.3829787234042,
+        "y": 113.53099730458221,
+        "category": "thumb",
+        "occluded": false
+      },
+      {
+        "imgName": "00936c83-bfe0-4be4-bb3a-bfe6a8c29ae5_0006468.jpg",
+        "x": 1251.793313069909,
+        "y": 61.132075471698116,
+        "category": "thumb",
+        "occluded": true
+      },
+      {
+        "imgName": "00936c83-bfe0-4be4-bb3a-bfe6a8c29ae5_0006473.jpg",
+        "x": 1213.8601823708207,
+        "y": 154.28571428571428,
+        "category": "index",
+        "occluded": false
+      },
+      {
+        "imgName": "00936c83-bfe0-4be4-bb3a-bfe6a8c29ae5_0006468.jpg",
+        "x": 1213.8601823708207,
+        "y": 96.06469002695418,
+        "category": "index",
+        "occluded": false
+      }
+    ]
+  }
+}
