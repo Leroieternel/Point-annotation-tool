@@ -40,6 +40,10 @@ const sequenceNameElement = document.getElementById('sequenceName');
 const sequenceIndexElement = document.getElementById('sequenceIndex');
 const totalSequencesElement = document.getElementById('totalSequences');
 
+//
+const hardSampleCheckbox = document.getElementById('hardSampleCheckbox');
+
+
 let originalWidths = [];
 let originalHeights = [];
 let loadedImages = {};
@@ -204,6 +208,7 @@ function saveAnnotations() {
         const savedPoints = localStorage.getItem(`${sequenceName}_points`);
         const annotations = {
             sequence: sequenceName,
+            hard_samples: getHardFlag(sequenceName),   //
             points: []
         };
         if (savedPoints) {
@@ -234,12 +239,15 @@ function saveProgress() {
 }
 
 function loadProgress() {
+    const seqName = sequenceNames[currentSequenceIndex];  //
     const savedPoints = localStorage.getItem(`${sequenceNames[currentSequenceIndex]}_points`);
     if (savedPoints) {
         points = JSON.parse(savedPoints);
     } else {
         points = [];
     }
+    //
+    hardSampleCheckbox.checked = getHardFlag(seqName) === 1;
 }
 
 function redrawPoints() {
@@ -328,6 +336,16 @@ function groupImagesIntoSequences(imageNames) {
 
     sequenceNames = Object.keys(sequences);
 }
+
+//
+function getHardFlag(seqName) {
+  const v = localStorage.getItem(seqName + '_hard');
+  return v !== null ? Number(JSON.parse(v)) : 0;  // 0/1
+}
+function setHardFlag(seqName, val01) {
+  localStorage.setItem(seqName + '_hard', JSON.stringify(val01 ? 1 : 0));
+}
+
 
 loadSequencesButton.addEventListener('click', () => {
     imageLoader.click();
@@ -439,6 +457,13 @@ document.addEventListener('DOMContentLoaded', function() {
             magnifier.style.display = 'none';
         });
     });
+});
+
+//
+hardSampleCheckbox.addEventListener('change', () => {
+    if (!sequenceNames.length) return;
+    const seq = sequenceNames[currentSequenceIndex];
+    setHardFlag(seq, hardSampleCheckbox.checked ? 1 : 0);
 });
 
 let redrawZoomRegion = () => {
